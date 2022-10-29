@@ -69,7 +69,6 @@ public class Main {
         int temp = index;
 
         char[] lcs = new char[index + 1];
-        lcs[index] = '\u0000';
 
         int i = m;
         int j = n;
@@ -86,6 +85,8 @@ public class Main {
                 index--;
             }
 
+            // If not same, then find the larger of two and
+            // go in the direction of larger value
             else if (L[i - 1][j] > L[i][j - 1])
                 i--;
             else
