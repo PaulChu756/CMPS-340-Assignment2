@@ -2,7 +2,8 @@
 // C00124175
 // CMPS 340
 // Assignment 2
-// Due 10-27-2022
+// Due 10-30-2022
+
 package com.company;
 import java.lang.*;
 
@@ -13,35 +14,40 @@ public class Main {
         String s1 = "NKZDCBSMNNBPYCNMRNJNSTHTKADDSWMOQLEPLUFUWOXCCNMUKY";
         String s2 = "FFYUYNAJQSWCUUUTLINQHPIVGPKFIWJEYCYKJRMHSWAMUZCVJT";
 
+        char[] X=s1.toCharArray();
+        char[] Y=s2.toCharArray();
         int m = s1.length();
         int n = s2.length();
 
+
         long startTime = System.currentTimeMillis();
-        System.out.println("Length of LCS Recursion is" + " " + lcsRecursion( s1, s2, m, n ) );
+        System.out.println("Length of LCS Recursion is" + " " + lcsRecursion( X, Y, m, n ) );
         long endTime = System.currentTimeMillis();
         long duration = (endTime - startTime);
         System.out.println("LCS Recursion : " + duration + " milliseconds");
 
-        //System.out.println("Length of LCS DP is");
+        System.out.println("\nRecursion LCS would take too long and " +
+                "Dr. Aminul stated not to report it");
         System.out.println();
         long startTimeDP = System.currentTimeMillis();
         lcsDP( s1, s2, m, n );
         long endTimeDP = System.currentTimeMillis();
         long durationDP = (endTimeDP - startTimeDP);
-        System.out.println("LCS DP : " + durationDP + " milliseconds");
+        System.out.println("LCS DP Time : " + durationDP + " milliseconds");
 
 
     }
 
-    static int lcsRecursion(String X, String Y, int m, int n)
+    static int lcsRecursion(char[] X, char[] Y, int m, int n)
     {
         if (m == 0 || n == 0)
             return 0;
-        if (X.charAt(m-1) == Y.charAt(n-1))
+        if (X[m-1] == Y[n-1])
             return 1 + lcsRecursion(X, Y, m-1, n-1);
         else
             return Math.max(lcsRecursion(X, Y, m, n-1), lcsRecursion(X, Y, m-1, n));
     }
+
 
     static void lcsDP( String X, String Y, int m, int n )
     {
@@ -86,7 +92,7 @@ public class Main {
                 j--;
         }
         // Print the lcs
-        System.out.print("LCS DP of " + X + " and " + Y + " is ");
+        System.out.print("LCS Common String :");
         for (int k = 0; k < temp; k++)
             System.out.print(lcs[k]);
         System.out.println("\nLength of LCS : " + (lcs.length-1));
